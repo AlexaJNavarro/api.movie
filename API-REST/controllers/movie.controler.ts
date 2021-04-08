@@ -20,7 +20,7 @@ export class MovieController{
         const data:MovieInterface = req.body
         const movie= await ModelMovie.create(data)
         console.log(movie)
-        return res.status(200).json(movie)
+        return res.status(201).json(movie)
     }
 
     static async delete(req: Request, res: Response):Promise<Response>{
