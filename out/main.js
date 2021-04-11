@@ -8,10 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("./server");
+const dotenv_1 = __importDefault(require("dotenv"));
 (() => __awaiter(void 0, void 0, void 0, function* () {
+    dotenv_1.default.config();
+    console.log(process.env.PORT);
     const server = new server_1.Server();
+    server.Middleware();
     server.Setting();
     server.Routes();
     yield server.Listening();

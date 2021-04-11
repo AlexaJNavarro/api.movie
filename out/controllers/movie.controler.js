@@ -11,45 +11,71 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MovieController = void 0;
 const movie_model_1 = require("../models/movie.model");
+const answer_1 = require("../helper/answer");
 class MovieController {
     static getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            // try {
             const movie = yield movie_model_1.ModelMovie.getAll();
-            console.log(movie);
+            const response = new answer_1.Answer('Message', 'Consulta exitosa', false, movie);
             return res.status(200).json(movie);
+            // } catch (error) {
+            //     const response = new Answer('Error',error,true,null)
+            //     return res.status(401).json(response)
+            // }
         });
     }
     static getById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            // try {
             const ID = Number(req.params.ID);
             const movie = yield movie_model_1.ModelMovie.getById(ID);
-            console.log(movie);
+            const response = new answer_1.Answer('Message', 'Consulta exitosa', false, movie);
             return res.status(200).json(movie);
+            // } catch (error) {
+            //     const response= new Answer('Error',error,true,null)
+            //     return res.status(401).json(response)
+            // }
         });
     }
     static create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            // try {
             const data = req.body;
             const movie = yield movie_model_1.ModelMovie.create(data);
-            console.log(movie);
-            return res.status(200).json(movie);
+            const response = new answer_1.Answer('Message', 'Se guardo el registro', false, movie);
+            return res.status(201).json(movie);
+            // } catch (error) {
+            //     const response = new Answer('Error',error,true,null)
+            //     return res.status(400).json(response)
+            // }
         });
     }
     static delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            // try {
             const ID = Number(req.params.ID);
             const movie = yield movie_model_1.ModelMovie.delete(ID);
-            console.log(movie);
+            const response = new answer_1.Answer('Message', 'Se elimino correctamente', false, movie);
             return res.status(200).json(movie);
+            // } catch (error) {
+            //     const responese = new Answer('Error', error,true,null)
+            //     return res.status(400).json(response)
+            // }
         });
     }
     static update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            // try {
             const ID = Number(req.params.ID);
             const dataMovie = req.body;
             const movie = yield movie_model_1.ModelMovie.update(ID, dataMovie);
-            console.log(movie);
+            const response = new answer_1.Answer('Message', 'Se actualizo correctamente el registro', false, movie);
             return res.status(200).json(movie);
+            // } catch (error) {
+            //     const response = new Answer('Error',error,true,null)
+            //     return res.status(400).json(response)
+            // }
         });
     }
 }

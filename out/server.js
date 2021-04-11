@@ -7,9 +7,13 @@ exports.Server = void 0;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const movie_route_1 = __importDefault(require("./routes/movie.route"));
+const morgan_1 = __importDefault(require("morgan"));
 class Server {
     constructor() {
         this.app = express_1.default();
+    }
+    Middleware() {
+        this.app.use(morgan_1.default('dev'));
     }
     Routes() {
         this.app.use('/movies', movie_route_1.default);
@@ -19,8 +23,8 @@ class Server {
         this.app.use(cors_1.default());
     }
     Listening() {
-        this.app.listen(8080);
-        console.log('puerto: 8080');
+        this.app.listen(process.env.PORT);
+        console.log(`Puerto: ${process.env.PORT}`);
     }
 }
 exports.Server = Server;
